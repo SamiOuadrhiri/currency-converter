@@ -2,6 +2,19 @@
 
 Welcome to the Currency Converter project! This application allows you to convert currencies based on up-to-date exchange rates.
 
+## Project Overview
+
+This project offers several features and functionalities:
+
+- **User Authentication:** Users can log in securely, providing access to various features within the application.
+
+- **User Management:** Once logged in, users have the capability to create new user accounts.
+
+- **IP Whitelisting:** Users can whitelist specific IP addresses. Only individuals with whitelisted IP addresses are allowed access to the application. Currently, only the IP address '::1' is accepted.
+
+- **On-Demand Rate Updates:** Users can trigger on-demand updates for currency exchange rates. Please note that this process may not be instantaneous or run in the background as of the current implementation.
+
+
 ## About This Project
 This project is built using the Symfony PHP framework, making use of various Symfony components and best practices for web development.
 
