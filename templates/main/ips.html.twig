@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Currency Converter | Gebruikers{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <h1 class="page-title">Whitelisted IP's</h1>
+        {% for message in app.flashes('success') %}
+            <div class='flash'>
+                {{ message }}
+            </div>
+        {% endfor %}
+        <a href="{{ path('create-ip') }}">Nieuwe IP Whitelisten</a>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>IP</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for ip in ips %}
+                <tr>
+                    <td>{{ ip.id }}</td>
+                    <td>{{ ip.ip }}</td>
+                    <td><a href="{{ path('delete-ip', { id: ip.id }) }}">Verwijderen</a></td>
+                </tr>
+            {%  endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

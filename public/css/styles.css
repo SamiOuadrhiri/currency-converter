@@ -1,0 +1,282 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gabarito', sans-serif;
+}
+
+:root {
+    --color-light: rgba(251,249,242,1.0);
+    --color-dark: rgba(28,28,28,1.0);
+
+    --color-accent: rgba(42,147,213,1.0);
+
+    --padding: 30px;
+    --padding-button: 10px 20px;
+
+    --border-radius: 9px;
+}
+
+.page-title {
+    width: 100%;
+    padding: 20px 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+.page-wrapper {
+    padding: 20px 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.loading-spinner-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.loading-spinner {
+    height: 100px;
+    width: 100px;
+}
+
+@media only screen and (max-width: 1400px) {
+    .page-wrapper {
+        padding: 20px 200px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .page-wrapper {
+        padding: 20px 120px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .page-wrapper {
+        padding: 20px 60px;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .page-wrapper {
+        padding: 20px;
+    }
+}
+
+.display-none {
+    display: none;
+}
+
+/*NAVIGATION*/
+
+nav {
+    padding: var(--padding);
+    display: flex;
+    justify-content: space-between;
+    background: var(--color-light);
+}
+
+@media only screen and (max-width: 1000px) {
+    nav {
+        padding-top: 50px;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    .panel {
+        position: absolute;
+        top: 20px;
+        right: 5px;
+    }
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--color-dark);
+}
+
+nav .logo {
+    color: black;
+    font-size: 20px;
+    font-weight: 800;
+}
+
+nav li {
+    list-style: none;
+    text-align: center;
+}
+
+nav .links ul {
+    display: flex;
+    gap: 20px;
+}
+
+nav .links a {
+    font-size: 19px;
+    font-weight: 300;
+}
+
+nav .links a:hover {
+    color: var(--color-accent);
+}
+
+nav .panel a {
+    padding: var(--padding-button);
+    color: var(--color-light);
+    background: var(--color-dark);
+    border: 1px solid var(--color-dark);
+    border-radius: var(--border-radius);
+}
+
+nav .panel a:hover {
+    background: var(--color-accent);
+    border: 1px solid var(--color-accent);
+}
+
+/*TABLES*/
+
+table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table td, table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+table tr:nth-child(even){background-color: #f2f2f2;}
+
+table tr:hover {background-color: #ddd;}
+
+table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background: var(--color-dark);
+    color: white;
+}
+
+/*FORMS*/
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+form > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form > div > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+form .input {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    width: 100%;
+    font-size: 19px;
+    font-weight: 400;
+}
+
+form input,
+form select,
+form textarea {
+    width: 100%;
+    padding: 5px;
+    font-size: 19px;
+    border: 1px solid var(--color-dark);
+    border-radius: var(--border-radius);
+}
+
+form button,
+form a {
+    padding: var(--padding-button);
+    background: var(--color-dark);
+    color: var(--color-light);
+    border: 1px solid var(--color-dark);
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-check {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form-check > * {
+    width: fit-content;
+}
+
+/*CURRENCY CONVERTER*/
+
+.converter-container {
+    width: 100%;
+    padding: var(--padding);
+    background: var(--color-dark);
+    border-radius: var(--border-radius);
+}
+
+.converter-container label {
+    color: var(--color-light);
+}
+
+.converter-container button {
+    background: var(--color-light);
+    color: var(--color-dark);
+}
+
+.converter-container button:hover {
+    background: var(--color-accent);
+    color: var(--color-light);
+}
+
+/*FLASH*/
+
+.flash {
+    position: fixed;
+    top: 100px;
+    right: 10px;
+    padding: var(--padding-button);
+    background: var(--color-accent);
+    color: var(--color-light);
+    border-radius: var(--border-radius);
+    animation: flashIn ease-in-out 3s forwards;
+}
+
+@keyframes flashIn {
+    0% {
+        transform: translateX(100vw);
+    }
+    10% {
+        transform: translateX(0vw);
+    }
+    90% {
+        transform: translateX(0vw);
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}

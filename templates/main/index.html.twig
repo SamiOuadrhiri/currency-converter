@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Currency Converter{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <div class="converter-container">
+            <form class="converter" id="converter-form" action="{{ path('home') }}" method="POST">
+                <div class="input">
+                    <label for="currency-from">Valuta</label>
+                    <select id="currency-select" name="selected_currency">
+                        {% for currencyCode in currencyCodes %}
+                            <option value="{{ currencyCode.code }}">{{ currencyCode.code }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="input">
+                    <label for="currency-amount">Hoeveelheid</label>
+                    <input type="number" name="amount" id="currency-amount" />
+                </div>
+                <div class="buttons">
+                    <button type="submit">Converteer</button>
+                </div>
+            </form>
+        </div>
+        {% if currencies is defined %}
+            <table id="converted-amount">
+                <thead>
+                <tr>
+                    <th>Valuta</th>
+                    <th>Wisselkoers</th>
+                    <th>Waarde</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for currency in currencies %}
+                    <tr>
+                        <td>{{ currency.codeTo }}</td>
+                        <td>{{ currency.rate }}</td>
+                        <td>{{ currency.rate * amount }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#converter-form").submit(function () {
+                var formData = {
+                    selected_currency: $("#currency-select").val(),
+                    amount: $("#currency-amount").val()
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "{{ path('home') }}",
+                    data: formData,
+                });
+
+            });
+        });
+    </script>
+
+
+{% endblock %}

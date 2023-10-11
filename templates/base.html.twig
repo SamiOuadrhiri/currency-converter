@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+        <link href="{{ asset('css/styles.css') }}" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        {% block stylesheets %}
+
+        {% endblock %}
+
+        {% block javascripts %}
+            <script>
+                $(document).ready(function() {
+                    $('#run_command').click(function() {
+                        $.ajax({
+                            type: 'GET',
+                            url: '/execute-command', // De URL van je uitvoercommando
+                            success: function(data) {
+                                // Toon de uitvoer in een HTML-element
+                                $('#output-div').html(data);
+                            }
+                        });
+                    });
+                });
+            </script>
+        {% endblock %}
+    </head>
+    <body>
+        <nav>
+            <a class="logo" href="{{ path('home') }}">Currency Converter</a>
+            <div class="links">
+                {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
+                <ul>
+                    <li>
+                        <a href="{{ path('users') }}">Gebruikers</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('currency.currency_codes') }}">Valuta's</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('ips') }}">IP's</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('logs') }}">Logboek</a>
+                    </li>
+                    <li>
+                        <a id='run_command' href="{{ path('currency.fetch') }}">Gegevens Ophalen</a>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+            <div class="panel">
+                <ul>
+                    {% if not (is_granted('IS_AUTHENTICATED_FULLY')) %}
+                    <li>
+                        <a href="{{ path('app_login') }}">Login</a>
+                    </li>
+                    {% endif %}
+                    {% if (is_granted('IS_AUTHENTICATED_FULLY')) %}
+                        <li>
+                            <a href="{{ path('app_logout') }}">logout</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        {% block body %}{% endblock %}
+    </body>
+</html>

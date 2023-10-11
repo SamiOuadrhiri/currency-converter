@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Currency Converter | Fetch Data{% endblock %}
+
+{% block body %}
+    <div class="page-wrapper">
+        <h1 class="page-title">Gegevens Ophalen</h1>
+        <form class="fetch" id="fetch-form" method="POST">
+            <div id="fetch-button-container" class="buttons">
+                <a id="fetch-button" type="button" href="{{ path('currency.data') }}">Haal gegevens op van floatrates.com</a>
+            </div>
+            <div id="loading-spinner-container" class="loading-spinner-container display-none">
+                <img class="loading-spinner" src="{{ asset('images/loading-spinner.gif') }}" />
+                <p>We zijn momenteel bezig met het ophalen en bijwerken van de gegevens<br/>dit proces kan enige tijd in beslag nemen.</p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            const fetchButtonContainer = document.querySelector('#fetch-button-container');
+            const fetchButton = document.querySelector('#fetch-button');
+            const loadingSpinnerContainer = document.querySelector('#loading-spinner-container');
+
+            fetchButton.addEventListener('click', () => {
+                fetchButtonContainer.classList.add('display-none');
+                loadingSpinnerContainer.classList.remove('display-none');
+            })
+        });
+    </script>
+{% endblock %}
