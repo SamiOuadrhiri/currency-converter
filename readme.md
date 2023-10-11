@@ -39,5 +39,9 @@ Create a .env.local file or configure your environment variables according to yo
 You can start the Symfony development server with the following command:
 php bin/console server:start
 
+If you're using XAMPP or another local web server, make sure to configure your web server's virtual host or add the project to your web server's document root. You might access the application at http://localhost/currency-converter or a similar URL, depending on your server's configuration.
+
+Don't forget to make the necessary adjustments in your local web server to match your project's requirements.
+
 6. **Access the Application:**
 You can access the application by opening your web browser and visiting http://localhost:8000. You should now see the Currency Converter in action.
